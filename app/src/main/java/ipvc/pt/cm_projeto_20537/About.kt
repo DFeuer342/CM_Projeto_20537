@@ -5,16 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 
-class Menu : AppCompatActivity() {
+class About : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu)
+        setContentView(R.layout.activity_about2)
     }
 
-    fun onClickMenuMapa(view: View) {}
-    fun onClickMenuNotas(view: View) {}
-    fun onClickMenuAbout(view: View) {
-        val intent = Intent(this, About::class.java)
+    fun onClickAboutReturn(view: View) {
+        val intent = Intent(this, Menu::class.java)
         startActivity(intent)
     }
 }
