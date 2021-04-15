@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
 
     fun btnMenu(view: View) {
         val intent = Intent(this, Menu::class.java)
-        // start your next activity
         startActivity(intent)
     }
 }
