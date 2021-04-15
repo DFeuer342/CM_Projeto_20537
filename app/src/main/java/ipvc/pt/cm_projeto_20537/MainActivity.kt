@@ -2,6 +2,8 @@ package ipvc.pt.cm_projeto_20537
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.content.Intent
+import android.view.View
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -9,6 +11,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    //Criação de bransh Layouts
-    //teste
+    fun btnMenu(view: View) {
+        val intent = Intent(this, Menu::class.java)
+        // start your next activity
+        startActivity(intent)
+    }
 }
