@@ -17,7 +17,7 @@
         android:textSize="30dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/addNotaTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -27,7 +27,7 @@
         android:text="Titulo" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/addNotaDescricao"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -44,7 +44,8 @@
         android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="Guardar"
-        app:backgroundTint="#43A047" />
+        app:backgroundTint="#43A047"
+        android:onClick="btAddNotaGuardar"/>
 
     <Button
         android:id="@+id/btCancelar"
@@ -54,5 +55,6 @@
         android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="Cancelar"
+        android:onClick="btAddNotaCancelar"
         app:backgroundTint="#43A047" />
 </LinearLayout>

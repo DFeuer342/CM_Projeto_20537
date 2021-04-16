@@ -18,4 +18,7 @@ interface NotasDao {
 
         @Query("DELETE FROM nota_table")
         suspend fun deleteAll()
+
+        @Query("DELETE FROM nota_table WHERE id = id" )
+        suspend fun deleteByID()
 }

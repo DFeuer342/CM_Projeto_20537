@@ -14,6 +14,5 @@ class MainActivity : AppCompatActivity() {
     fun btnMenu(view: View) {
         val intent = Intent(this, Menu::class.java)
         startActivity(intent)
-        //teste
     }
 }

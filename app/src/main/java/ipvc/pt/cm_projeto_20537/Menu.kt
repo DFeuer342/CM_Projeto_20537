@@ -11,8 +11,11 @@ class Menu : AppCompatActivity() {
         setContentView(R.layout.activity_menu)
     }
 
-    fun onClickMenuMapa(view: View) {}
-    fun onClickMenuNotas(view: View) {}
+    //fun onClickMenuMapa(view: View) {}
+    fun onClickMenuNotas(view: View) {
+        val intent = Intent(this, ListaNotas::class.java)
+        startActivity(intent)
+    }
     fun onClickMenuAbout(view: View) {
         val intent = Intent(this, About::class.java)
         startActivity(intent)
