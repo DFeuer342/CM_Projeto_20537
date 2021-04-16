@@ -7,9 +7,8 @@ import ipvc.pt.cm_projeto_20537.DAO.NotasDao
 import ipvc.pt.cm_projeto_20537.ententies.Nota
 import kotlinx.coroutines.CoroutineScope
 
-class NotaDB {
-    @Database(entities = [Nota::class], version = 1, exportSchema = false)
-    public abstract class NotaRoomDatabase : RoomDatabase() {
+@Database(entities = [Nota::class], version = 1, exportSchema = false)
+public abstract class NotaDB: RoomDatabase() {
 
     abstract fun notasDao(): NotasDao
 
@@ -17,15 +16,15 @@ class NotaDB {
         // Singleton prevents multiple instances of database opening at the
         // same time.
         @Volatile
-        private var INSTANCE: NotaRoomDatabase? = null
+        private var INSTANCE: NotaDB? = null
 
 
-        fun getDatabase(context: Context, scope: CoroutineScope): NotaRoomDatabase {
+        fun getDatabase(context: Context, scope: CoroutineScope): NotaDB {
             val tempInstance = INSTANCE
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    NotaRoomDatabase::class.java,
+                    NotaDB::class.java,
                     "notas_database"
                 )
                     .build()
@@ -36,8 +35,5 @@ class NotaDB {
             }
         }
     }
-}
-
-
 }
 
