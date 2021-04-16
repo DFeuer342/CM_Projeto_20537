@@ -11,7 +11,7 @@ import ipvc.pt.cm_projeto_20537.ententies.Nota
 interface NotasDao {
 
         @Query("SELECT * FROM nota_table ORDER BY id DESC")
-        fun getNotaByID(): LiveData<List<Nota>>
+        fun getNotas(): LiveData<List<Nota>>
 
         @Insert(onConflict = OnConflictStrategy.IGNORE)
         suspend fun insert(nota: Nota)

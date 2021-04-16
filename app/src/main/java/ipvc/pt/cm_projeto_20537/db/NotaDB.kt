@@ -9,7 +9,7 @@ import ipvc.pt.cm_projeto_20537.ententies.Nota
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Nota::class], version = 1, exportSchema = false)
+@Database(entities = [Nota::class], version = 3, exportSchema = false)
 public abstract class NotaDB: RoomDatabase() {
 
     abstract fun notasDao(): NotasDao
@@ -20,7 +20,7 @@ public abstract class NotaDB: RoomDatabase() {
 
         override fun onOpen(db: SupportSQLiteDatabase) {
             super.onOpen(db)
-            INSTANCE?.let { database ->
+            val let = INSTANCE?.let { database ->
                 scope.launch {
                     var notasDao = database.notasDao()
 
@@ -28,9 +28,9 @@ public abstract class NotaDB: RoomDatabase() {
 
                     var nota = Nota(1, "Rua Oliveira", "Buracos na estrada")
                     notasDao.insert(nota)
-                    Nota(2, "Rua Cantinho das Flores", "Demasiado suspeita")
+                    nota = Nota(2, "Rua Cantinho das Flores", "Demasiado suspeita")
                     notasDao.insert(nota)
-                    Nota(3, "Largo S João", "Qualquer coisa com o santo")
+                    nota = Nota(3, "Largo S João", "Qualquer coisa com o santo")
                     notasDao.insert(nota)
 
                 }
@@ -52,7 +52,10 @@ public abstract class NotaDB: RoomDatabase() {
                         context.applicationContext,
                         NotaDB::class.java,
                         "notas_database"
-                    ).build()
+                    )
+                        .fallbackToDestructiveMigration()
+                        .addCallback(WordDatabaseCallback(scope))
+                        .build()
 
                     INSTANCE = instance
                     // return instance

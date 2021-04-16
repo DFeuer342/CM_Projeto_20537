@@ -26,6 +26,7 @@ class ListaNotas : AppCompatActivity() {
         val adapter = NotaAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+
         val viewModel = ViewModelProvider(this).get(NotaViewModel::class.java)
         NotaViewModel.allNotas.observe(this, Observer { notas ->
             notas?.let{ adapter.setNotas(it)}

@@ -8,7 +8,7 @@ import ipvc.pt.cm_projeto_20537.ententies.Nota
 
 class NotaRepositorio(private val notasDao: NotasDao) {
 
-    val allNotas: LiveData<List<Nota>> = notasDao.getNotaByID()
+    val allNotas: LiveData<List<Nota>> = notasDao.getNotas()
 
     suspend fun insert(nota: Nota) {
         notasDao.insert(nota)
