@@ -9,7 +9,7 @@ import ipvc.pt.cm_projeto_20537.ententies.Nota
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(Nota::class), version = 1, exportSchema = false)
+@Database(entities = [Nota::class], version = 1, exportSchema = false)
 public abstract class NotaDB: RoomDatabase() {
 
     abstract fun notasDao(): NotasDao
@@ -30,7 +30,7 @@ public abstract class NotaDB: RoomDatabase() {
                     notasDao.insert(nota)
                     Nota(2, "Rua Cantinho das Flores", "Demasiado suspeita")
                     notasDao.insert(nota)
-                    Nota(2, "Largo S João", "Qualquer coisa com o santo")
+                    Nota(3, "Largo S João", "Qualquer coisa com o santo")
                     notasDao.insert(nota)
 
                 }
