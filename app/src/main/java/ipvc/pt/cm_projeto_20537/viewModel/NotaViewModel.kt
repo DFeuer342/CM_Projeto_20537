@@ -15,13 +15,12 @@ class NotaViewModel (application: Application) : AndroidViewModel(application) {
     val allNotas: LiveData<List<Nota>>
 
     init {
-        val  notasDao = NotaDB.getDatabase(application, viewModelScope).notasDao()
-        repositorio = NotaRepositorio(notasDao)
+        val  nDao = NotaDB.getDatabase(application, viewModelScope).notasDao()
+        repositorio = NotaRepositorio(nDao)
         allNotas = repositorio.allNotas
     }
 
     fun insert(nota: Nota) = viewModelScope.launch{
-
         repositorio.insert(nota)
     }
 }

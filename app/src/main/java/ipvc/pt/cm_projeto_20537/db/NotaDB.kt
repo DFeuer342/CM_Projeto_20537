@@ -9,49 +9,50 @@ import ipvc.pt.cm_projeto_20537.ententies.Nota
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Nota::class], version = 1, exportSchema = false)
+@Database(entities = arrayOf(Nota::class), version = 1, exportSchema = false)
 public abstract class NotaDB: RoomDatabase() {
 
     abstract fun notasDao(): NotasDao
 
-    private class NotaDatabaseCallback(
+    private class WordDatabaseCallback(
         private val scope: CoroutineScope
     ) : RoomDatabase.Callback() {
 
         override fun onOpen(db: SupportSQLiteDatabase) {
-            super.onCreate(db)
+            super.onOpen(db)
             INSTANCE?.let { database ->
                 scope.launch {
-                    var notaDao = database.notasDao()
+                    var notasDao = database.notasDao()
 
-                    notaDao.deleteAll()
+                    notasDao.deleteAll()
 
                     var nota = Nota(1, "Rua Oliveira", "Buracos na estrada")
-                    notaDao.insert(nota)
+                    notasDao.insert(nota)
                     Nota(2, "Rua Cantinho das Flores", "Demasiado suspeita")
-                    notaDao.insert(nota)
+                    notasDao.insert(nota)
                     Nota(2, "Largo S João", "Qualquer coisa com o santo")
-                    notaDao.insert(nota)
+                    notasDao.insert(nota)
 
                 }
             }
         }
-
+    }
 
         companion object {
             @Volatile
             private var INSTANCE: NotaDB? = null
 
-
             fun getDatabase(context: Context, scope: CoroutineScope): NotaDB {
                 val tempInstance = INSTANCE
-                return INSTANCE ?: synchronized(this) {
+                if (tempInstance != null) {
+                    return tempInstance
+                }
+                synchronized(this) {
                     val instance = Room.databaseBuilder(
                         context.applicationContext,
                         NotaDB::class.java,
                         "notas_database"
-                    )
-                        .build()
+                    ).build()
 
                     INSTANCE = instance
                     // return instance
@@ -60,5 +61,5 @@ public abstract class NotaDB: RoomDatabase() {
             }
         }
     }
-}
+
 
