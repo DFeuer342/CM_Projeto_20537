@@ -32,7 +32,11 @@ class AddNotas : AppCompatActivity() {
             val replyIntent = Intent()
             if (TextUtils.isEmpty(insertTituloView.text) && TextUtils.isEmpty(insertDescricaoView.text)){
                 setResult(Activity.RESULT_CANCELED, replyIntent)
-            } else {
+            } else if(TextUtils.isEmpty(insertTituloView.text)){
+                    setResult(Activity.RESULT_CANCELED, replyIntent)
+            }else if(TextUtils.isEmpty(insertDescricaoView.text)) {
+                setResult(Activity.RESULT_CANCELED, replyIntent)
+            }else{
                 val id = insertTituloView.id
                 replyIntent.putExtra(EXTRA_REPLY_ID, id)
                 val titulo = insertTituloView.text.toString()
@@ -40,10 +44,10 @@ class AddNotas : AppCompatActivity() {
                 val descricao = insertDescricaoView.text.toString()
                 replyIntent.putExtra(EXTRA_REPLY_CONTENT, descricao)
                 setResult(Activity.RESULT_OK, replyIntent)
+                Toast.makeText(this, "Teste call", Toast.LENGTH_SHORT).show()
             }
             finish()
         }
-
     }
     companion object {
         const val EXTRA_REPLY_ID = "id"

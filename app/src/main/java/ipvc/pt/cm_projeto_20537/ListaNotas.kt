@@ -39,22 +39,23 @@ class ListaNotas : AppCompatActivity() {
             val intent = Intent(this@ListaNotas, AddNotas::class.java)
             startActivityForResult(intent, newWordActivityRequestCode)
         }
+    }
 
-        fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-            super.onActivityResult(requestCode, resultCode, data)
-            if (requestCode == newWordActivityRequestCode) {
-                if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
-                    var titulo = data?.getStringExtra(AddNotas.EXTRA_REPLY_TITLE).toString()
-                    var descricao = data?.getStringExtra(AddNotas.EXTRA_REPLY_CONTENT).toString()
-                    var nota = Nota(titulo = titulo, descricao = descricao)
-                    NotaViewModel.insert(nota)
-                    Toast.makeText(this, "Nota guardada.", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(
-                            applicationContext,
-                            "Dados vazios. Operação cancelada",
-                            Toast.LENGTH_LONG).show()
-                }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == newWordActivityRequestCode) {
+            if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
+                var titulo = data?.getStringExtra(AddNotas.EXTRA_REPLY_TITLE).toString()
+                var descricao = data?.getStringExtra(AddNotas.EXTRA_REPLY_CONTENT).toString()
+                var nota = Nota(titulo = titulo, descricao = descricao)
+                NotaViewModel.insert(nota)
+                Toast.makeText(this, "Nota guardada.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(
+                    applicationContext,
+                    "Dados vazios. Operação cancelada",
+                    Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Nota guardada.", Toast.LENGTH_SHORT).show()
             }
         }
     }
