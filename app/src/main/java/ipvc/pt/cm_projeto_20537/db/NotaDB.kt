@@ -24,8 +24,6 @@ public abstract class NotaDB: RoomDatabase() {
                 scope.launch {
                     var notasDao = database.notasDao()
 
-                    notasDao.deleteAll()
-
                     var nota = Nota(1, "Rua Oliveira", "Buracos na estrada")
                     notasDao.insert(nota)
                     nota = Nota(2, "Rua Cantinho das Flores", "Demasiado suspeita")

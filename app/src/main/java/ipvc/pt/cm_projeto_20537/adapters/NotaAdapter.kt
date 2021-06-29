@@ -8,15 +8,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ipvc.pt.cm_projeto_20537.R
 import ipvc.pt.cm_projeto_20537.ententies.Nota
+import ipvc.pt.cm_projeto_20537.viewModel.CellClickListener
 
 class NotaAdapter internal constructor(
-    context: Context) : RecyclerView.Adapter<NotaAdapter.NotaViewHolder>(){
+    context: Context, private val CellClickListener: CellClickListener
+) : RecyclerView.Adapter<NotaAdapter.NotaViewHolder>(){
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var notas = emptyList<Nota>()
 
     class NotaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val NotaItemView: TextView = itemView.findViewById(R.id.textView)
+        val NotaItemView: TextView = itemView.findViewById(R.id.textViewName)
+        val NotaItemViewDesc: TextView = itemView.findViewById(R.id.textViewDesc)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotaViewHolder {
@@ -27,6 +30,12 @@ class NotaAdapter internal constructor(
     override fun onBindViewHolder(holder: NotaViewHolder, position: Int) {
         val current = notas[position]
         holder.NotaItemView.text = current.titulo
+        holder.NotaItemViewDesc.text = current.descricao
+
+        //vai buscar interfc para o onclik
+        holder.itemView.setOnClickListener {
+            CellClickListener.onCellClickListener(notas[position])
+        }
     }
 
     internal fun  setNotas(notas: List<Nota>){

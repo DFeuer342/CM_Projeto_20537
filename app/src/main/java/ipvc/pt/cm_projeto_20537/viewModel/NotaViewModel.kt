@@ -23,6 +23,14 @@ class NotaViewModel (application: Application) : AndroidViewModel(application) {
     fun insert(nota: Nota) = viewModelScope.launch{
         repositorio.insert(nota)
     }
+
+    fun update(id: Int?, titulo: String, observacao: String) = viewModelScope.launch{
+        repositorio.update(id, titulo, observacao)
+    }
+
+    fun delete(id: Int?) = viewModelScope.launch{
+        repositorio.delete(id)
+    }
 }
 
 

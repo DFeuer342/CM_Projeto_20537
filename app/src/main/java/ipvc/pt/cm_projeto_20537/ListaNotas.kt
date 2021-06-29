@@ -3,6 +3,7 @@ package ipvc.pt.cm_projeto_20537
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -13,10 +14,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ipvc.pt.cm_projeto_20537.adapters.NotaAdapter
 import ipvc.pt.cm_projeto_20537.ententies.Nota
+import ipvc.pt.cm_projeto_20537.viewModel.CellClickListener
 import ipvc.pt.cm_projeto_20537.viewModel.NotaViewModel
 
-class ListaNotas : AppCompatActivity() {
-    private val newWordActivityRequestCode = 1;
+const val PARAM_ID: String = "id"
+const val PARAM_TITULO: String = "titulo"
+const val PARAM_DESCRICAO: String = "descricao"
+
+class ListaNotas : AppCompatActivity(), CellClickListener {
+    private val newNotasActivityRequestCode = 1
+    private val newNotasActivityRequestCode2 = 2
+
 
     val NotaViewModel: NotaViewModel by viewModels()
 
@@ -25,7 +33,7 @@ class ListaNotas : AppCompatActivity() {
         setContentView(R.layout.activity_lista_notas)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = NotaAdapter(this)
+        val adapter = NotaAdapter(this, this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -37,14 +45,14 @@ class ListaNotas : AppCompatActivity() {
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
             val intent = Intent(this@ListaNotas, AddNotas::class.java)
-            startActivityForResult(intent, newWordActivityRequestCode)
+            startActivityForResult(intent, newNotasActivityRequestCode)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == newWordActivityRequestCode) {
-            if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
+        if (requestCode == newNotasActivityRequestCode) {
+            if (requestCode == newNotasActivityRequestCode && resultCode == Activity.RESULT_OK) {
                 var titulo = data?.getStringExtra(AddNotas.EXTRA_REPLY_TITLE).toString()
                 var descricao = data?.getStringExtra(AddNotas.EXTRA_REPLY_CONTENT).toString()
                 var nota = Nota(titulo = titulo, descricao = descricao)
@@ -58,6 +66,40 @@ class ListaNotas : AppCompatActivity() {
                 Toast.makeText(this, "Nota guardada.", Toast.LENGTH_SHORT).show()
             }
         }
+        // EDITAR E APAGAR NOTA
+        if (requestCode == newNotasActivityRequestCode2 && resultCode == Activity.RESULT_OK) {
+            var edit_titulo = data?.getStringExtra(EditNotas.EDIT_TITULO).toString()
+            var edit_observacao = data?.getStringExtra(EditNotas.EDIT_DESCRICAO).toString()
+            var id = data?.getStringExtra(EditNotas.EDIT_ID)
+            var id_delete = data?.getStringExtra(EditNotas.DELETE_ID)
+            if(data?.getStringExtra(EditNotas.STATUS) == "EDIT"){
+                NotaViewModel.update(id?.toIntOrNull(), edit_titulo, edit_observacao)
+                Toast.makeText(this, "NOTA EDITADA", Toast.LENGTH_SHORT).show()
+            } else if(data?.getStringExtra(EditNotas.STATUS) == "DELETE"){
+                NotaViewModel.delete(id_delete?.toIntOrNull())
+                Toast.makeText(this, "NOTA ELIMINADA", Toast.LENGTH_SHORT).show()
+            }
+            //notasViewModel.update(id?.toIntOrNull(), edit_titulo, edit_observacao)
+            //notasViewModel.delete(id_delete?.toIntOrNull())
+            //Toast.makeText(this, "Nota editada!", Toast.LENGTH_LONG).show()
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+            if(data?.getStringExtra(EditNotas.STATUS) == "EDIT"){
+                Toast.makeText(this, "Erro a editar nota", Toast.LENGTH_SHORT).show()
+            } else if(data?.getStringExtra(EditNotas.STATUS) == "DELETE"){
+                Toast.makeText(this, "Erro a eliminar nota", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
+    override fun onCellClickListener(data: Nota) {
+        val intent = Intent(this@ListaNotas, EditNotas::class.java)
+        intent.putExtra(PARAM_ID, data.id.toString())
+        intent.putExtra(PARAM_TITULO, data.titulo.toString())
+        intent.putExtra(PARAM_DESCRICAO, data.descricao.toString())
+        startActivityForResult(intent, newNotasActivityRequestCode2)
+        Log.d("Obser", data.id.toString())
+        Toast.makeText(this,data.id.toString(), Toast.LENGTH_SHORT).show()
     }
 
 }
