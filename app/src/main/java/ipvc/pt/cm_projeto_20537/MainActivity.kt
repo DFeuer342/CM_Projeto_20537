@@ -11,8 +11,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun btnMenu(view: View) {
-        val intent = Intent(this, Menu::class.java)
+    fun btNotas(view: View) {
+        val intent = Intent(this, ListaNotas::class.java)
         startActivity(intent)
     }
+
+    fun btEntrar(view: View) {
+        val intent = Intent(this, Login::class.java)
+        startActivity(intent)
+    }
+
+    fun btAbout(view: View) {
+        val intent = Intent(this, About::class.java)
+        startActivity(intent)
+    }
+
+
 }

@@ -12,7 +12,7 @@ class About : AppCompatActivity() {
     }
 
     fun onClickAboutReturn(view: View) {
-        val intent = Intent(this, Menu::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 }

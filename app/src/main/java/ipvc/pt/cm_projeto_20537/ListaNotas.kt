@@ -69,11 +69,11 @@ class ListaNotas : AppCompatActivity(), CellClickListener {
         // EDITAR E APAGAR NOTA
         if (requestCode == newNotasActivityRequestCode2 && resultCode == Activity.RESULT_OK) {
             var edit_titulo = data?.getStringExtra(EditNotas.EDIT_TITULO).toString()
-            var edit_observacao = data?.getStringExtra(EditNotas.EDIT_DESCRICAO).toString()
+            var edit_descricao = data?.getStringExtra(EditNotas.EDIT_DESCRICAO).toString()
             var id = data?.getStringExtra(EditNotas.EDIT_ID)
             var id_delete = data?.getStringExtra(EditNotas.DELETE_ID)
             if(data?.getStringExtra(EditNotas.STATUS) == "EDIT"){
-                NotaViewModel.update(id?.toIntOrNull(), edit_titulo, edit_observacao)
+                NotaViewModel.update(id?.toIntOrNull(), edit_titulo, edit_descricao)
                 Toast.makeText(this, "NOTA EDITADA", Toast.LENGTH_SHORT).show()
             } else if(data?.getStringExtra(EditNotas.STATUS) == "DELETE"){
                 NotaViewModel.delete(id_delete?.toIntOrNull())
