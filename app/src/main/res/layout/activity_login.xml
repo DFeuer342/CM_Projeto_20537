@@ -13,7 +13,7 @@
     >
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imgLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
@@ -33,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:inputType="textPassword"
             android:hint="Password"
             android:textSize="18dp" />
 
