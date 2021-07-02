@@ -1,5 +1,8 @@
 package ipvc.pt.cm_projeto_20537
 
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -19,6 +22,8 @@ class Login : AppCompatActivity() {
     private lateinit var editTextLoginName: EditText
     private lateinit var editTextLoginPass: EditText
     private lateinit var checkBox: CheckBox
+    private lateinit var shared_preferences: SharedPreferences
+    private var lembrar = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,12 +32,21 @@ class Login : AppCompatActivity() {
         editTextLoginPass = findViewById(R.id.edTextPass)
         checkBox = findViewById(R.id.checkManterIni)
 
+        shared_preferences = getSharedPreferences("shared_preferences", Context.MODE_PRIVATE)
+        lembrar = shared_preferences.getBoolean("lembrar", false)
+
+        if(lembrar){
+            val intent = Intent(this@Login, Menu::class.java)
+            startActivity(intent);
+            finish()
+        }
     }
 
     fun btLogin(view: View) {
         val request = ServiceBuilder.buildService(EndPoints::class.java)
         val username = editTextLoginName.text.toString()
         val password = editTextLoginPass.text.toString()
+        val checked_remember: Boolean = checkBox.isChecked
         val call = request.login(username = username, password = password)
 
         call.enqueue(object : Callback<OutputLogin> {
@@ -45,7 +59,16 @@ class Login : AppCompatActivity() {
                         if(c.status == "false"){
                             Toast.makeText(this@Login, c.MSG, Toast.LENGTH_LONG).show()
                         }else{
-                            Toast.makeText(this@Login, c.MSG, Toast.LENGTH_LONG).show()
+                            val shared_preferences_edit : SharedPreferences.Editor = shared_preferences.edit()
+                            shared_preferences_edit.putString("username", username)
+                            shared_preferences_edit.putString("password", password)
+                            shared_preferences_edit.putInt("id", c.id)
+                            shared_preferences_edit.putBoolean("lembrar", checked_remember)
+                            shared_preferences_edit.apply()
+
+                            val intent = Intent(this@Login, Menu::class.java)
+                            startActivity(intent)
+                            finish()
                         }
                     }
                 }
