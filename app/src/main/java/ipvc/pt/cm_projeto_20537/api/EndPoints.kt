@@ -16,4 +16,8 @@ interface EndPoints {
     @POST("/myslim/api/login")
     fun login(@Field("username") username: String?, @Field("password") password: String?): Call<OutputLogin>
 
+    //-------------------   Actividade MapsActivity -----------------------------------
+    @GET ("/myslim/api/problemas")
+    fun getProblemas(): Call<List<Problema>>
+
 }

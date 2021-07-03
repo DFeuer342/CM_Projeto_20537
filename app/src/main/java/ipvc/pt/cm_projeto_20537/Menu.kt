@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.SharedPreferences
 import android.view.View
+import android.widget.Toast
 
 class Menu : AppCompatActivity() {
 
@@ -25,6 +26,14 @@ class Menu : AppCompatActivity() {
         val intent = Intent(this@Menu, Login::class.java)
         startActivity(intent)
         finish()
+    }
+
+    fun btMapa(view: View) {
+        val intent = Intent(this@Menu, MapsActivity::class.java)
+        startActivity(intent)
+    }
+    fun btExtra(view: View) {
+        Toast.makeText(this@Menu,"Activity Extra", Toast.LENGTH_SHORT).show()
     }
 
 }
