@@ -23,5 +23,6 @@
     <string name="btMap">Map</string>
     <string name="btLogout">Logout</string>
     <string name="app_name">CM_Projeto_20537</string>
+    <string name="textInfoAboutObjective">Objective</string>
 
 </resources>
