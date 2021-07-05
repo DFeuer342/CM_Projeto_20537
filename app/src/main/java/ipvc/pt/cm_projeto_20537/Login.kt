@@ -42,7 +42,7 @@ class Login : AppCompatActivity() {
         }
     }
 
-    fun btLogin() {
+    fun btLogin(view: View) {
         val request = ServiceBuilder.buildService(EndPoints::class.java)
         val username = editTextLoginName.text.toString()
         val password = editTextLoginPass.text.toString()
@@ -79,7 +79,7 @@ class Login : AppCompatActivity() {
         })
     }
 
-    fun btVoltar() {
+    fun btVoltar(view: View) {
         val intent = Intent(this@Login, MainActivity::class.java)
         startActivity(intent)
     }

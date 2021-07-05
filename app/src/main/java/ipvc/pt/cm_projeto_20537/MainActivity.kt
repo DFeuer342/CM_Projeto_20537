@@ -11,17 +11,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun btNotas() {
+    fun btNotas(view: View) {
         val intent = Intent(this, ListaNotas::class.java)
         startActivity(intent)
     }
 
-    fun btEntrar() {
+    fun btEntrar(view: View) {
         val intent = Intent(this, Login::class.java)
         startActivity(intent)
     }
 
-    fun btAbout() {
+    fun btAbout(view: View) {
         val intent = Intent(this, About::class.java)
         startActivity(intent)
     }
