@@ -8,17 +8,9 @@
     android:orientation="vertical"
     android:layout_marginRight="30dp"
     android:layout_marginLeft="30dp"
-    android:layout_marginTop="30dp"
+    android:layout_marginTop="60dp"
     android:layout_marginBottom="30dp"
     >
-
-        <ImageView
-            android:id="@+id/imgLogin"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginBottom="40dp"
-            tools:srcCompat="@drawable/avatar" />
 
         <EditText
             android:id="@+id/edTextNome"
@@ -41,16 +33,31 @@
             android:id="@+id/checkManterIni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/LoginCheck">
+            android:text="@string/LoginCheck"
+            android:layout_marginLeft="20dp">
         </CheckBox>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/btLogin"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
             android:layout_margin="20dp"
             android:onClick="btLogin"
             android:text="@string/btEnter"
             app:backgroundTint="#3D7887" />
 
+        <Button
+            android:id="@+id/btCancelar"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_margin="20dp"
+            android:onClick="btVoltar"
+            android:text="@string/btVoltar"
+            app:backgroundTint="#3D7887" />
+
+                </LinearLayout>
 </LinearLayout>

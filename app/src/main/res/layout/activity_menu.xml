@@ -20,27 +20,28 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="70dp"
-            app:srcCompat="@drawable/img_front_example" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:text="@string/AppTitle"
-            android:textSize="35dp" />
+            android:textSize="50dp" />
+
+        <TextView
+            android:id="@+id/textRecep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/textWellcome"
+            android:textSize="30dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="100dp"
             android:orientation="vertical">
 
             <Button
@@ -48,8 +49,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
-                android:onClick="btEntrar"
-                android:text="@string/btStart"
+                android:onClick="btMapa"
+                android:text="@string/btMap"
                 android:textSize="20dp"
                 android:layout_marginBottom="15dp"
                 app:backgroundTint="#3D7887" />
@@ -59,21 +60,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
-                android:onClick="btNotas"
-                android:text="@string/btPersonalNotes"
+                android:onClick="btExtra"
+                android:text="@string/btCancel"
                 android:textSize="20dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="150dp"
                 app:backgroundTint="#3D7887" />
 
             <Button
-                android:id="@+id/btAbout"
+                android:id="@+id/btSair"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
-                android:onClick="btAbout"
-                android:text="@string/btAbout"
+                android:onClick="btSair"
+                android:text="@string/btLogout"
                 android:textSize="20dp"
-                app:backgroundTint="#3D7887" />
+                app:backgroundTint="#C14242" />
         </LinearLayout>
     </LinearLayout>
 

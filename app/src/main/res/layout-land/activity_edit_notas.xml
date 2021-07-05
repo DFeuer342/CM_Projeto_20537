@@ -11,9 +11,9 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
-        android:text="Nota"
+        android:text="@string/Edit_nota"
         android:textColor="@color/black"
         android:textSize="30dp" />
 
@@ -24,26 +24,35 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Titulo" />
+        android:layout_marginTop="20dp" />
 
     <EditText
         android:id="@+id/textDescEdit"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:inputType="textPersonName"
         android:layout_marginHorizontal="20dp"
-        android:gravity="top"
-        android:text="Descrição" />
+        android:gravity="top" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btCancelar"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="190dp"
+            android:gravity="center"
+            android:text="@string/btCancel"
+            app:backgroundTint="@android:color/darker_gray" />
 
         <Button
             android:id="@+id/btApagarNota"
@@ -53,7 +62,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginRight="20dp"
             android:gravity="center"
-            android:text="Eliminar"
+            android:text="@string/btDelete"
             app:backgroundTint="@color/design_default_color_error" />
 
         <Button
@@ -63,18 +72,13 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="Guardar"
+            android:text="@string/btSave"
             app:backgroundTint="#43A047" />
+
+
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btCancelar"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="Cancelar"
-        app:backgroundTint="@android:color/darker_gray" />
+
 
 </LinearLayout>
