@@ -10,9 +10,7 @@ import ipvc.pt.cm_projeto_20537.R
 import ipvc.pt.cm_projeto_20537.ententies.Nota
 import ipvc.pt.cm_projeto_20537.viewModel.CellClickListener
 
-class NotaAdapter internal constructor(
-    context: Context, private val CellClickListener: CellClickListener
-) : RecyclerView.Adapter<NotaAdapter.NotaViewHolder>(){
+class NotaAdapter internal constructor(context: Context, private val CellClickListener: CellClickListener) : RecyclerView.Adapter<NotaAdapter.NotaViewHolder>(){
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var notas = emptyList<Nota>()
