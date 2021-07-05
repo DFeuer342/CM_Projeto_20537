@@ -11,8 +11,10 @@ class About : AppCompatActivity() {
         setContentView(R.layout.activity_about2)
     }
 
-    fun onClickAboutReturn(view: View) {
+    fun onClickAboutReturn() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
+
+    fun onClickAboutReturn(view: View) {}
 }

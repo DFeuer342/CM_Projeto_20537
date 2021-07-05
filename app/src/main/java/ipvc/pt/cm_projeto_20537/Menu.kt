@@ -18,7 +18,7 @@ class Menu : AppCompatActivity() {
         shared_preferences = getSharedPreferences("shared_preferences", Context.MODE_PRIVATE)
     }
 
-    fun btSair(view: View){
+    fun btSair(){
         val shared_preferences_edit : SharedPreferences.Editor = shared_preferences.edit()
         shared_preferences_edit.clear()
         shared_preferences_edit.apply()
@@ -28,11 +28,11 @@ class Menu : AppCompatActivity() {
         finish()
     }
 
-    fun btMapa(view: View) {
+    fun btMapa() {
         val intent = Intent(this@Menu, MapsActivity::class.java)
         startActivity(intent)
     }
-    fun btExtra(view: View) {
+    fun btExtra() {
         Toast.makeText(this@Menu,"Activity Extra", Toast.LENGTH_SHORT).show()
     }
 
