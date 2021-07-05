@@ -78,4 +78,9 @@ class Login : AppCompatActivity() {
             }
         })
     }
+
+    fun btVoltar(view: View) {
+        val intent = Intent(this@Login, MainActivity::class.java)
+        startActivity(intent)
+    }
 }
