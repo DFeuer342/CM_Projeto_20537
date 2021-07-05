@@ -25,6 +25,7 @@ class Login : AppCompatActivity() {
     private lateinit var shared_preferences: SharedPreferences
     private var lembrar = false
 
+    //despiste
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
